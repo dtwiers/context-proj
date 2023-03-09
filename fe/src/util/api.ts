@@ -21,11 +21,11 @@ const SESSION_STORAGE_KEY = 'contextualize_access_token';
 const makeAxios = (token?: string | null) => {
   if (token) {
     return axios.create({
-      baseURL: import.meta.env.API_BASE,
+      baseURL: import.meta.env.VITE_API_BASE,
       headers: { Authorization: `Bearer ${token}` },
     });
   }
-  return axios.create({ baseURL: import.meta.env.API_BASE });
+  return axios.create({ baseURL: import.meta.env.VITE_API_BASE });
 };
 class Api {
   private readonly axios$: BehaviorSubject<AxiosInstance>;
