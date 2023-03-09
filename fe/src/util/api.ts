@@ -129,7 +129,8 @@ class Api {
   }
 
   public async getAssetImage(assetId: string): Promise<Blob> {
-    return (await this.axios$.value.get<Blob>(`/assets/${assetId}`)).data;
+    // const meta = await this.getAssetMeta(assetId);
+    return (await this.axios$.value.get<Blob>(`/assets/${assetId}`, {responseType: 'blob'})).data;
   }
 
   public async getAssetMeta(assetId: string): Promise<Asset> {
