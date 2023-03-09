@@ -1,7 +1,20 @@
 {
-  "extends": "../tsconfig.base.json",
+  "compileOnSave": false,
   "files": [],
   "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
     "outDir": "dist",
     "module": "commonjs",
     "types": [
@@ -9,14 +22,13 @@
     ],
     "emitDecoratorMetadata": true,
     "target": "es2015",
-    "paths": {
-      "@contextualizer/api-interface": ["src/api-interface/index.ts"]
-    }
   },
   "exclude": [
     "jest.config.ts",
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "node_modules",
+    "tmp"
   ],
   "include": [
     "@types/multer",
