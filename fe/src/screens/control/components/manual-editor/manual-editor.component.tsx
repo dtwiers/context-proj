@@ -1,12 +1,6 @@
 import { useParams } from '@solidjs/router';
 import { SelectAssetModal } from '../../../../components/select-asset-modal';
-import {
-  createEffect,
-  createMemo,
-  createResource,
-  createSignal,
-  Show,
-} from 'solid-js';
+import { createEffect, createMemo, createResource, createSignal, Show } from 'solid-js';
 import styles from './manual-editor.module.css';
 import { SlideState } from '../../../../types/slide-state';
 import { api } from '../../../../util/api';
@@ -28,6 +22,16 @@ export const ManualEditor = (props: ManualEditorProps) => {
   const [subtitle, setSubtitle] = createSignal<string>('');
   const [footer, setFooter] = createSignal<string>('');
   const [assetId, setAssetId] = createSignal<string>('');
+
+  createEffect(() => {
+    if (resource.state === 'ready') {
+      setHeader(resource().header ?? '');
+      setTitle(resource().title ?? '');
+      setSubtitle(resource().subtitle ?? '');
+      setFooter(resource().footer ?? '');
+      setAssetId(resource().assetId ?? '');
+    }
+  });
 
   const changedItems = createMemo<Set<ItemType>>(() => {
     const items = new Set<ItemType>();
@@ -60,15 +64,12 @@ export const ManualEditor = (props: ManualEditorProps) => {
     return hasChangedItems;
   }, changedItems().size > 0);
 
-  const [assetLabel] = createResource<string, string>(
-    assetId,
-    async (assetId) => {
-      if (assetId) {
-        return (await api.getAssetMeta(assetId)).label;
-      }
-      return '';
+  const [assetLabel] = createResource<string, string>(assetId, async (assetId) => {
+    if (assetId) {
+      return (await api.getAssetMeta(assetId)).label;
     }
-  );
+    return '';
+  });
 
   createEffect(() => {
     if (resource.state === 'ready') {
@@ -80,61 +81,57 @@ export const ManualEditor = (props: ManualEditorProps) => {
   });
 
   return (
-    <form action="#" class={styles.manualEditorForm}>
+    <form action='#' class={styles.manualEditorForm}>
       <div class={styles.inputGroup}>
-        <label for="header-input">
+        <label for='header-input'>
           Header
           <Show when={changedItems().has('header')}>
             <span class={styles.changedItem}>*</span>
           </Show>
         </label>
         <input
-          id="header-input"
-          type="text"
+          id='header-input'
+          type='text'
           value={header()}
           onInput={(ev) => setHeader(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
-        <label for="title-input">
+        <label for='title-input'>
           Title
           <Show when={changedItems().has('title')}>
             <span class={styles.changedItem}>*</span>
           </Show>
         </label>
         <input
-          id="title-input"
-          type="text"
+          id='title-input'
+          type='text'
           value={title()}
           onInput={(ev) => setTitle(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
-        <label for="subtitle-input">
+        <label for='subtitle-input'>
           Subtitle
           <Show when={changedItems().has('subtitle')}>
             <span class={styles.changedItem}>*</span>
           </Show>
         </label>
         <input
-          id="subtitle-input"
-          type="text"
+          id='subtitle-input'
+          type='text'
           value={subtitle()}
           onInput={(ev) => setSubtitle(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
-        <label for="footer-input">
+        <label for='footer-input'>
           Footer
           <Show when={changedItems().has('footer')}>
             <span class={styles.changedItem}>*</span>
           </Show>
         </label>
-        <input
-          type="text"
-          value={footer()}
-          onInput={(ev) => setFooter(ev.currentTarget.value)}
-        />
+        <input type='text' value={footer()} onInput={(ev) => setFooter(ev.currentTarget.value)} />
       </div>
       <div class={styles.inputGroup}>
         <span>
@@ -144,7 +141,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
           </Show>
         </span>
         <button
-          type="button"
+          type='button'
           onClick={() => modalRef?.showModal()}
           class={styles.selectAssetButton}
         >
@@ -155,7 +152,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
       <button
         class={styles.submitButton}
         disabled={changedItems().size === 0}
-        type="submit"
+        type='submit'
         onClick={async () => {
           await api.setManualPresentationState(eventId, {
             header: header(),
@@ -163,8 +160,8 @@ export const ManualEditor = (props: ManualEditorProps) => {
             subtitle: subtitle(),
             footer: footer(),
             assetId: assetId(),
-          }),
-            refetch();
+          });
+          refetch();
         }}
       >
         Update
