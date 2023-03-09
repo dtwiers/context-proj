@@ -3,4 +3,4 @@
 root * /srv
 encode gzip
 try_files {path} /srv/index.html
-file_server pass_thru
+file_server
