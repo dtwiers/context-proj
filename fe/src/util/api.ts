@@ -116,7 +116,9 @@ class Api {
       data: data.data.map((value) => hydrateDates(value, 'createdAt', 'updatedAt')),
     };
     const thumbResponses = await Promise.all(
-      data.data.map((asset) => this.axios$.value.get<Blob>(`/assets/${asset.id}/thumb`))
+      data.data.map((asset) =>
+        this.axios$.value.get<Blob>(`/assets/${asset.id}/thumb`, { responseType: 'blob' })
+      )
     );
     const thumbs = thumbResponses.map((response) => response.data);
     return {
@@ -128,9 +130,17 @@ class Api {
     };
   }
 
+  // gets object url of image
   public async getAssetImage(assetId: string): Promise<Blob> {
-    // const meta = await this.getAssetMeta(assetId);
-    return (await this.axios$.value.get<Blob>(`/assets/${assetId}`, {responseType: 'blob'})).data;
+    const imageResponse = await this.axios$.value.get<Blob>(`/assets/${assetId}`, {
+      responseType: 'blob',
+    });
+    try {
+      console.log(imageResponse.data);
+    } catch (e) {
+      console.error(e);
+    }
+    return imageResponse.data;
   }
 
   public async getAssetMeta(assetId: string): Promise<Asset> {
