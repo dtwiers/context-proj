@@ -27,13 +27,14 @@ done
 
 # Print the appropriate message based on the env
 if [ "$env" = "--prod" ]; then
+  echo "Copying Prod Config to Env"
   cp ./.env.production ./.env
-  npm ci
   npm run migrate-prod
   npm run generate
   npm run build
 else
   rm -f ./env
+  echo "Copying Dev Config to Env"
   cp ./.env.dev ./.env
   npm ci
   npm run migrate
