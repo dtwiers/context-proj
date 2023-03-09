@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id           String        @id @default(cuid())
+  name         String
+  screenHeight Int
+  screenWidth  Int
+  date         DateTime?
+  updatedAt    DateTime?
+  createdAt    DateTime      @default(now())
+  Slides       Slide[]       @relation("Slides")
+  Presentation Presentation? @relation("Presentation")
+}
+
+enum PresentationMode {
+  INVISIBLE
+  EMPTY
+  MANUAL
+  SLIDE
+}
+
+model Presentation {
+  id            String           @id @default(cuid())
+  Asset         Asset?           @relation(name: "Presentations", fields: [assetId], onDelete: SetNull, references: [id])
+  assetId       String?
+  mode          PresentationMode
+  previousMode  PresentationMode @default(INVISIBLE)
+  header        String?
+  footer        String?
+  title         String?
+  subtitle      String?
+  Event         Event            @relation(name: "Presentation", fields: [eventId], references: [id], onDelete: Cascade)
+  eventId       String           @unique
+  Slide         Slide?           @relation(name: "SlidePresentation", fields: [slideId], onDelete: SetNull, references: [id])
+  slideId       String?
+}
+
+model Slide {
+  id                 String         @id @default(cuid())
+  name               String
+  asset              Asset?         @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  assetId            String?
+  event              Event          @relation(name: "Slides", fields: [eventId], references: [id], onDelete: Cascade)
+  eventId            String
+  header             String?
+  footer             String?
+  title              String?
+  subtitle           String?
+  updatedAt          DateTime?
+  createdAt          DateTime       @default(now())
+  Presentation       Presentation[] @relation("SlidePresentation")
+}
+
+model Asset {
+  id            String         @id @default(cuid())
+  label         String
+  filename      String
+  data          Bytes
+  mimetype      String
+  thumbnailName String?
+  thumbnail     Bytes?
+  Slide         Slide[]
+  updatedAt     DateTime?
+  createdAt     DateTime       @default(now())
+  Presentation  Presentation[] @relation("Presentations")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  username     String    @unique
+  passwordHash String
+  lastLoggedIn DateTime?
+}

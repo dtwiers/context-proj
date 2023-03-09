@@ -1,0 +1,25 @@
+{
+  "extends": "../tsconfig.base.json",
+  "files": [],
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ],
+    "emitDecoratorMetadata": true,
+    "target": "es2015",
+    "paths": {
+      "@contextualizer/api-interface": ["src/api-interface/index.ts"]
+    }
+  },
+  "exclude": [
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "include": [
+    "@types/multer",
+    "**/*.ts",
+  ],
+}
