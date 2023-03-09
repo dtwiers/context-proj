@@ -27,7 +27,6 @@ done
 
 # Print the appropriate message based on the env
 if [ "$env" = "--prod" ]; then
-  rm -f ./.env
   cp ./.env.production ./.env
   npm ci
   npm run migrate-prod
