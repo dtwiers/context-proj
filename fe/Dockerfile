@@ -1,14 +1,14 @@
 FROM node:18-alpine
 ENV NODE_ENV=production
 WORKDIR /app
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json ./
+COPY tsconfig*.json ./
+COPY index.html ./
+COPY src ./src
 RUN npm ci
-COPY . .
 RUN npm run build
-COPY ./site/ ./site
 
 FROM caddy:alpine
-WORKDIR /app
 RUN apk 
-COPY ./site/ /srv/
+COPY --from=0 /app/site/ /srv/
 COPY ./Caddyfile /etc/caddy/Caddyfile
