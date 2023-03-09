@@ -13,6 +13,7 @@ import { ObservableProps } from './lower-third.types';
 import styles from './lower-third.module.css';
 import { PresentationMode } from '../../api-interface';
 import { api } from '../../util/api';
+import { BASE_API } from '../../util/api-base';
 
 export type LowerThirdProps = {
   header?: string | null | undefined;
@@ -268,7 +269,7 @@ export const LowerThird = (props: LowerThirdProps) => {
             y={computeCrop(680)}
             width="290"
             height="190"
-            href={`/api/assets/${assetId()?.value}`}
+            href={`${BASE_API}/assets/${assetId()?.value}`}
             preserveAspectRatio="xMidYMid meet"
             transform=""
             clip-path="url(#img-clip)"

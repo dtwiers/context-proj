@@ -7,25 +7,21 @@ import {
 } from '../api-interface';
 import axios, { type AxiosInstance } from 'axios';
 import { hydrateDates, Serializable } from './serialization';
-import type {
-  Asset,
-  Event as ContextEvent,
-  EventWithSlides,
-  Slide,
-} from '../types';
+import type { Asset, Event as ContextEvent, EventWithSlides, Slide } from '../types';
 import { SlideState } from '../types/slide-state';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { BASE_API } from './api-base';
 
 const SESSION_STORAGE_KEY = 'contextualize_access_token';
 
 const makeAxios = (token?: string | null) => {
   if (token) {
     return axios.create({
-      baseURL: import.meta.env.VITE_API_BASE,
+      baseURL: BASE_API,
       headers: { Authorization: `Bearer ${token}` },
     });
   }
-  return axios.create({ baseURL: import.meta.env.VITE_API_BASE });
+  return axios.create({ baseURL: BASE_API });
 };
 class Api {
   private readonly axios$: BehaviorSubject<AxiosInstance>;
@@ -38,10 +34,10 @@ class Api {
   }
 
   public async login(username: string, password: string): Promise<void> {
-    const response = await this.axios$.value.post<{ access_token: string }>(
-      `/auth/login`,
-      { username, password }
-    );
+    const response = await this.axios$.value.post<{ access_token: string }>(`/auth/login`, {
+      username,
+      password,
+    });
     const token = response.data.access_token;
     sessionStorage.setItem(SESSION_STORAGE_KEY, token);
     this.axios$.next(makeAxios(token));
@@ -64,14 +60,13 @@ class Api {
   }
 
   public async getEvents(offset: number): Promise<Paginated<ContextEvent[]>> {
-    const { data } = await this.axios$.value.get<
-      Paginated<Serializable<ContextEvent>[]>
-    >('/events', { params: { offset } });
+    const { data } = await this.axios$.value.get<Paginated<Serializable<ContextEvent>[]>>(
+      '/events',
+      { params: { offset } }
+    );
     return {
       ...data,
-      data: data.data.map((value) =>
-        hydrateDates(value, 'createdAt', 'updatedAt', 'date')
-      ),
+      data: data.data.map((value) => hydrateDates(value, 'createdAt', 'updatedAt', 'date')),
     };
   }
 
@@ -83,11 +78,7 @@ class Api {
       {
         ...data,
         Slides: data.Slides.map((slide) =>
-          hydrateDates(
-            slide as unknown as Serializable<Slide>,
-            'createdAt',
-            'updatedAt'
-          )
+          hydrateDates(slide as unknown as Serializable<Slide>, 'createdAt', 'updatedAt')
         ),
       },
       'date',
@@ -98,10 +89,7 @@ class Api {
 
   public async updateEvent(
     eventId: string,
-    updatedEvent: Pick<
-      EventWithSlides,
-      'name' | 'date' | 'screenHeight' | 'screenWidth'
-    >
+    updatedEvent: Pick<EventWithSlides, 'name' | 'date' | 'screenHeight' | 'screenWidth'>
   ): Promise<void> {
     const serializableEvent = {
       ...updatedEvent,
@@ -110,10 +98,7 @@ class Api {
     await this.axios$.value.patch(`/events/${eventId}`, serializableEvent);
   }
 
-  public async createEvent(
-    name: string,
-    date: Date | undefined
-  ): Promise<void> {
+  public async createEvent(name: string, date: Date | undefined): Promise<void> {
     this.axios$.value.post(`/events`, { name, date });
   }
 
@@ -123,19 +108,15 @@ class Api {
 
   public async getAssets(query?: string): Promise<Paginated<Asset[]>> {
     const params = query ? { q: query } : {};
-    const { data } = await this.axios$.value.get<
-      Paginated<Serializable<Asset>[]>
-    >('/assets', { params });
+    const { data } = await this.axios$.value.get<Paginated<Serializable<Asset>[]>>('/assets', {
+      params,
+    });
     const hydratedData = {
       ...data,
-      data: data.data.map((value) =>
-        hydrateDates(value, 'createdAt', 'updatedAt')
-      ),
+      data: data.data.map((value) => hydrateDates(value, 'createdAt', 'updatedAt')),
     };
     const thumbResponses = await Promise.all(
-      data.data.map((asset) =>
-        this.axios$.value.get<Blob>(`/assets/${asset.id}/thumb`)
-      )
+      data.data.map((asset) => this.axios$.value.get<Blob>(`/assets/${asset.id}/thumb`))
     );
     const thumbs = thumbResponses.map((response) => response.data);
     return {
@@ -153,11 +134,7 @@ class Api {
 
   public async getAssetMeta(assetId: string): Promise<Asset> {
     return hydrateDates(
-      (
-        await this.axios$.value.get<Serializable<Asset>>(
-          `/assets/${assetId}/meta`
-        )
-      ).data,
+      (await this.axios$.value.get<Serializable<Asset>>(`/assets/${assetId}/meta`)).data,
       'createdAt',
       'updatedAt'
     );
@@ -174,46 +151,33 @@ class Api {
     });
   }
 
-  public async updatePresentationMode(
-    eventId: string,
-    mode: PresentationMode
-  ): Promise<void> {
+  public async updatePresentationMode(eventId: string, mode: PresentationMode): Promise<void> {
     this.axios$.value.patch(`/presentations/${eventId}/mode`, { mode });
   }
 
-  public async getManualPresentationState(
-    eventId: string
-  ): Promise<SlideState> {
+  public async getManualPresentationState(eventId: string): Promise<SlideState> {
     return this.axios$.value.get(`/presentations/${eventId}/manual`);
   }
 
-  public async setManualPresentationState(
-    eventId: string,
-    state: SlideState
-  ): Promise<void> {
+  public async setManualPresentationState(eventId: string, state: SlideState): Promise<void> {
     this.axios$.value.patch(`/presentations/${eventId}/data`, state);
   }
 
   public async getPresentationSlideId(eventId: string): Promise<string | null> {
-    const result = await this.axios$.value.get<string | null>(
-      `/presentations/${eventId}/slide`
-    );
+    const result = await this.axios$.value.get<string | null>(`/presentations/${eventId}/slide`);
     return result.data;
   }
 
   public async getSlidesForPresentation(
     eventId: string
   ): Promise<(Slide & { asset?: { label: string } })[]> {
-    const result = await this.axios$.value.get<
-      (Slide & { asset?: { label: string } })[]
-    >(`/presentations/${eventId}/slides`);
+    const result = await this.axios$.value.get<(Slide & { asset?: { label: string } })[]>(
+      `/presentations/${eventId}/slides`
+    );
     return result.data;
   }
 
-  public async switchSlidesForPresentation(
-    eventId: string,
-    slideId: string
-  ): Promise<void> {
+  public async switchSlidesForPresentation(eventId: string, slideId: string): Promise<void> {
     this.axios$.value.patch(`/presentations/${eventId}/slide`, { slideId });
   }
 
@@ -223,10 +187,7 @@ class Api {
     });
   }
 
-  public async updateSlide(
-    slideId: string,
-    slide: UpdateSlideBody
-  ): Promise<void> {
+  public async updateSlide(slideId: string, slide: UpdateSlideBody): Promise<void> {
     this.axios$.value.patch(`/slides/${slideId}`, slide);
   }
 

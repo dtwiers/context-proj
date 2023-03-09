@@ -1,5 +1,6 @@
 import { useParams } from '@solidjs/router';
 import { createResource, Show } from 'solid-js';
+import { BASE_API } from '../../util/api-base';
 import { Main } from '../../components/main';
 import { api } from '../../util/api';
 import styles from './asset-detail.module.css';
@@ -10,7 +11,7 @@ export const AssetDetail = () => {
   return (
     <Main>
       <article class={styles.mainContainer}>
-        <img class={styles.img} src={`/api/assets/${id}`} />
+        <img class={styles.img} src={`${BASE_API}/assets/${id}`} />
         <Show when={meta()}>
           <dl class={styles.dl}>
             <div>

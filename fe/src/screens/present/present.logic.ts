@@ -1,6 +1,7 @@
 import { PresentationStatus } from '../../api-interface';
 import { scan, Subject } from 'rxjs';
 import { onCleanup, onMount } from 'solid-js';
+import { BASE_API } from '../../util/api-base';
 
 export type Update = {
   prev: PresentationStatus;
@@ -33,12 +34,11 @@ export const listenForUpdates = (presentationId: string) => {
   let eventSource: EventSource;
   const handleMessage = (event: MessageEvent<string>) => {
     status$.next(JSON.parse(event.data));
-    console.warn(JSON.parse(event.data));
   };
   onMount(() => {
     if (presentationId) {
       eventSource = new EventSource(
-        `/api/presentations/${presentationId}/subscribe`
+        `${BASE_API}/presentations/${presentationId}/subscribe`
       );
       eventSource?.addEventListener('message', handleMessage);
     }

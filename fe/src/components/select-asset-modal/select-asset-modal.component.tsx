@@ -1,4 +1,5 @@
 import { createResource, createSignal, For, Show } from 'solid-js';
+import { BASE_API } from '../../util/api-base';
 import { api } from '../../util/api';
 import { Modal } from '../modal';
 import styles from './select-asset-modal.module.css';
@@ -73,7 +74,7 @@ export const SelectAssetModal = (props: SelectAssetModalProps) => {
                   }
                 >
                   <img
-                    src={`/api/assets/${item.id}/thumb`}
+                    src={`${BASE_API}/assets/${item.id}/thumb`}
                     class={styles.img}
                   />
                   <div class={styles.metaContainer}>
