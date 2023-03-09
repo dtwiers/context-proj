@@ -2,10 +2,10 @@
   "name": "my-prisma-project",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/api/src/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "serve": "node dist/api/src/main.js",
+    "serve": "node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "prisma migrate dev",
     "migrate-prod": "prisma migrate deploy",
