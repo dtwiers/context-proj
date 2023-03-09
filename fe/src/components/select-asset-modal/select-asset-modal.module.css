@@ -1,0 +1,83 @@
+.toggleButton {
+  display: flex;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary);
+  padding: 0;
+  overflow: clip;
+  height: 100px;
+  width: 100%;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.img {
+  height: 100px;
+  max-width: max(100px, min(23vw, 200px));
+  object-fit: contain;
+}
+
+.metaContainer, .emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 1rem;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  color: var(--color-text-copy);
+}
+
+.metaContainer h3 {
+  font-size: large;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: auto;
+}
+
+.selected {
+  background-color: var(--color-bg-secondary-selected);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.searchInput {
+  border: none;
+  border-radius: 6px;
+  padding: 3px;
+  font-size: large;
+  flex: none;
+}
+
+.footerCancel {
+  border: none;
+  font-size: large;
+  color: var(--color-text-cancel);
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.footerOk {
+  border: none;
+  font-size: large;
+  background-color: var(--color-bg-cta-primary);
+  color: var(--color-fg-cta-primary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.footerOk:hover {
+  background-color: var(--color-cta-primary-hover);
+}

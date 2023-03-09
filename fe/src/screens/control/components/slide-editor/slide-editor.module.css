@@ -1,0 +1,45 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0.5rem 1rem;
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.searchInput {
+  font-size: large;
+  padding: 6px;
+  background-color: var(--color-bg-primary);
+  border: none;
+  border-radius: 6px;
+  flex: 1 0 auto;
+}
+
+.updateLabel {
+  flex: 0 1 auto;
+}
+
+.slideContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 355px), 1fr));
+  gap: 1rem;
+}
+
+.slideButton {
+  border: none;
+  border-radius: 6px;
+  background: var(--color-bg-primary);
+  padding: 12px;
+  font-size: large;
+  transition: all 0.25s;
+}
+
+.selected {
+  background: var(--color-bg-cta-primary);
+  color: var(--color-fg-cta-primary)
+}

@@ -1,0 +1,22 @@
+.wrapper {
+  opacity: 0;
+  transition: ease-in-out all 400ms;
+}
+
+.up {
+  opacity: 100%;
+  transition: ease-in-out all 400ms;
+}
+
+.down {
+  opacity: 0%;
+  transition: ease-in-out all 400ms;
+}
+
+.transition {
+  transition: ease-in-out all 400ms;
+}
+
+.textTransition {
+  transition: ease-in-out opacity 200ms;
+}

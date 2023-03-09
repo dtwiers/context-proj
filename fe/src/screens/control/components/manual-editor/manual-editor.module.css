@@ -1,0 +1,57 @@
+.manualEditorForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 355px), 1fr));
+  gap: 1.25rem;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.inputGroup label {
+  min-width: 305px;
+  flex: 1;
+}
+
+.inputGroup input {
+  border: 1px solid #ccc;
+  width: 100%;
+  min-width: 305px;
+  font-size: large;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.submitButton {
+  border: none;
+  padding: 1rem;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-cta-primary);
+  color: var(--color-fg-cta-primary);
+  transition: all 0.25s;
+}
+
+.submitButton:disabled {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-meta);
+}
+
+.selectAssetButton {
+  border: none;
+  padding: 1rem;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 0.5rem;
+}
+
+.changedItem {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: var(--color-bg-status-error);
+}

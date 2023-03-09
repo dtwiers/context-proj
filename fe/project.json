@@ -1,0 +1,63 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/contextualizer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nxext/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/contextualizer",
+        "baseHref": "/",
+        "configFile": "apps/contextualizer/vite.config.prod.ts"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/contextualizer/src/environments/environment.ts",
+              "with": "apps/contextualizer/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nxext/vite:dev",
+      "options": {
+        "outputPath": "dist/apps/contextualizer",
+        "baseHref": "/",
+        "configFile": "apps/contextualizer/vite.config.ts",
+        "proxyConfig": "apps/contextualizer/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/contextualizer/src/environments/environment.ts",
+              "with": "apps/contextualizer/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/contextualizer/**/*.{ts,js,tsx,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/contextualizer"],
+      "options": {
+        "jestConfig": "apps/contextualizer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [],
+  "name": "contextualizer"
+}

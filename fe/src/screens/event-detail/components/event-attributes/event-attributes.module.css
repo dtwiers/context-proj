@@ -1,0 +1,38 @@
+.descriptionList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  row-gap: 1rem;
+  column-gap: 0.5rem;
+  grid-auto-flow: row;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.descriptionList div {
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionList dd {
+  color: var(--color-text-meta);
+  text-align: start;
+}
+
+.descriptionList dt {
+  color: var(--color-text-copy);
+  font-weight: bold;
+  text-align: start;
+}
+
+.descriptionList input {
+  margin-left: 40px;
+  font-size: large;
+  font-weight: bold;
+  color: var(--color-text-copy);
+  font-family: DMSans;
+}
+
+.nullish {
+  color: var(--color-text-meta);
+}

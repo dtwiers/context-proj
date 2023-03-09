@@ -1,0 +1,51 @@
+.iconButton {
+  padding: var(--spacing-md) var(--spacing-sm);
+  font-size: 32px;
+  border-radius: 999px;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: var(--color-bg-cta-primary);
+  color: var(--color-fg-cta-primary);
+}
+
+.primary:hover {
+  background-color: var(--color-bg-cta-primary-hover);
+}
+
+.loading {
+  background-color: var(--color-bg-status-loading);
+  color: var(--color-fg-status-loading);
+}
+
+.success {
+  background-color: var(--color-bg-status-success);
+  color: var(--color-fg-status-success);
+}
+
+.success:hover {
+  background-color: var(--color-bg-status-success-hover);
+}
+
+.error {
+  background-color: var(--color-bg-status-error);
+  color: var(--color-fg-status-error);
+}
+
+.neutral {
+  background-color: var(--color-bg-status-neutral);
+  color: var(--color-fg-status-neutral);
+}
+
+.neutral:hover {
+  background-color: var(--color-bg-status-neutral-hover);
+}

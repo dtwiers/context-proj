@@ -1,0 +1,84 @@
+.footerCancel {
+  border: none;
+  font-size: large;
+  color: var(--color-text-cancel);
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.footerOk {
+  border: none;
+  font-size: large;
+  background-color: var(--color-bg-cta-primary);
+  color: var(--color-fg-cta-primary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.footerOk:hover {
+  background-color: var(--color-cta-primary-hover);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.label {
+  display: flex;
+  font-size: large;
+  gap: 18px;
+  width: 100%;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.label span {
+  width: 6rem;
+  text-align: right;
+}
+
+.label input {
+  flex-grow: 1;
+  max-width: 30rem;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 4px;
+  border: none;
+  border-radius: 6px;
+}
+
+.label .fileInput {
+  position: relative;
+  flex-grow: 1;
+  max-width: 30rem;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  overflow-x: clip;
+}
+
+.label .fileInput label {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-copy);
+  overflow-x: clip;
+  display: block;
+  text-overflow: ellipsis;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.label input.hiddenInput {
+  visibility: hidden;
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+}

@@ -1,0 +1,39 @@
+.main {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+  max-width: 1720px;
+  width: 100%;
+}
+
+.addEventButton {
+  background-color: var(--color-bg-cta-primary);
+  padding: var(--spacing-md) var(--spacing-sm);
+  color: var(--color-fg-cta-primary);
+  font-size: 32px;
+  border-radius: 999px;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addEventButton:hover {
+  background-color: var(--color-bg-cta-primary-hover);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  place-self: center;
+  width: 100%;
+}

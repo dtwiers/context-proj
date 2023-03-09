@@ -1,0 +1,139 @@
+.main {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  max-width: 1199px;
+  align-self: center;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainHeader {
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.metaText {
+  color: var(--color-text-meta);
+}
+
+.mainContainer {
+  background: var(--color-bg-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 1rem;
+}
+
+.buttonList {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.editButton {
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+  transition: ease-in-out;
+  transition-duration: 0.15s;
+  transition-property: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editButton svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ctaColor {
+  background-color: var(--color-bg-status-neutral);
+  color: var(--color-fg-status-neutral);
+}
+
+.ctaColor:hover {
+  background-color: var(--color-bg-status-neutral-hover);
+}
+
+.happyColor {
+  background-color: var(--color-bg-status-success);
+  color: var(--color-fg-status-success);
+}
+
+.happyColor:hover {
+  background-color: var(--color-bg-status-success-hover);
+}
+
+.angryColor {
+  background-color: var(--color-bg-status-error);
+  color: var(--color-fg-status-error);
+}
+
+.loadingColor {
+  background-color: var(--color-bg-status-loading);
+  color: var(--color-fg-status-loading);
+}
+
+.loadingColor svg {
+  animation: spinner 0.4s linear infinite;
+}
+
+.cancelButton {
+  border: none;
+  background: none;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: large;
+  color: var(--color-text-cancel);
+}
+
+.controlButton {
+  border: none;
+  background: var(--color-bg-status-neutral);
+  color: var(--color-fg-status-neutral);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+}
+
+.controlButton > svg {
+  width: 32px;
+  height: 32px;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.slideBox {
+  background-color: var(--color-bg-secondary);
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  transition: all 150ms;
+  font-size: large;
+}
+
+.slideBox:hover{
+  background-color: var(--color-bg-secondary-hover);
+}
+
+.selected {
+  background-color: var(--color-bg-secondary-selected);
+}

@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.modeButtonContainer {
+  display: flex;
+}
+
+.tabContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: hsl(260, 100%, 90%);
+  gap: 1rem;
+  padding: 1rem 1rem 0;
+  box-sizing: border-box;
+}
+
+.tabContainer button {
+  transition: ease-in-out 0.15s all;
+  flex: 1 1;
+  border: 1px solid transparent;
+  border-bottom: 8px solid transparent;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  background-color: hsl(260, 100%, 93%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tabContainer button:hover {
+  background-color: hsl(260, 100%, 97%);
+}
+
+.tabContainer button.active {
+  background-color: hsl(260, 100%, 80%);
+  /* border: 0px solid hsl(250, 0%, 30%); */
+  border-bottom: 8px solid hsl(250, 0%, 30%);
+}
+
+.changedItem {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: var(--color-bg-status-error);
+}

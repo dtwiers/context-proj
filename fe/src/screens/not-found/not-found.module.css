@@ -1,0 +1,39 @@
+.background {
+  height: 100%;
+  flex-grow: 1;
+  background-color: var(--color-bg-secondary-hover);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.main {
+  background: var(--color-bg-status-warning);
+  box-shadow: 2px 10px 18px 4px var(--color-drop-shadow-dark);
+  color: var(--color-fg-status-warning);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  max-width: min(500px, 100%);
+  overflow-x: clip;
+}
+
+.main h1, .main h2 {
+  margin: 0.5rem;
+}
+
+.ignoreWidth {
+  max-width: 100%;
+  overflow: clip;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}

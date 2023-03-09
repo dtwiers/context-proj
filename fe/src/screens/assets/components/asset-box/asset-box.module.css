@@ -1,0 +1,163 @@
+.eventContainer {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.12s;
+  background-color: var(--color-bg-primary);
+  border: none;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.primaryContainer {
+  position: relative;
+  flex-grow: 1;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-height: 108px;
+}
+
+.eventLink {
+  height: 108px;
+  border: none;
+  place-self: center;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+  color: var(--color-text-copy);
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 0 1rem 0 0;
+  transition: ease-in-out 0.15s all;
+}
+
+.thumb {
+  height: 100%;
+  max-width: max(80px, min(350px, 25vw));
+  object-fit: contain;
+}
+
+.confirmDeleteText {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 108px;
+  border: 1px solid var(--color-bg-status-error);
+  place-self: center;
+  width: 100%;
+  max-width: 100%;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+  text-align: center;
+  color: var(--color-fg-backdrop-dramatic);
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: var(--color-bg-backdrop-dramatic);
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+  transition: ease-in-out 0.3s all;
+}
+
+.confirmDeleteTransitionOn {
+  opacity: 0;
+  /* animation: confirmDeleteTransitionOn;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.15s; */
+}
+
+.confirmDeleteTransitionOff {
+  opacity: 0;
+  /* animation: confirmDeleteTransitionOn; */
+}
+.confirmDeleteVisible {
+  display: flex;
+}
+
+@keyframes confirmDeleteTransitionOn {
+  from {
+    opacity: 0;
+    backdrop-filter: none;
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+.eventLink:hover {
+  background-color: var(--color-bg-primary-hover);
+}
+
+.headingContainer {
+  flex-grow: 1;
+}
+.attributesContainer {
+  color: var(--color-text-meta);
+  font-size: medium;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+}
+
+.boxtitle {
+  font-size: 1.4rem;
+  line-height: normal;
+  font-weight: bold;
+}
+
+.optionList {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: none;
+  background-color: var(--color-bg-secondary);
+  transition: ease-in-out 0.15s all;
+}
+
+.optionButton {
+  border: none;
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  font-size: x-large;
+  transition: ease-in-out 0.15s all;
+}
+
+.optionButton:hover {
+  background-color: var(--color-bg-secondary-hover);
+}
+
+.trash {
+  color: var(--color-bg-status-error);
+}
+
+.invertedTrashButton,
+.invertedTrashButton:active,
+.invertedTrashButton:focus {
+  background-color: var(--color-bg-status-error);
+  color: black;
+}
+
+.invertedTrashButton:hover {
+  color: black;
+}
+
+.trash:hover {
+  color: #ff6644;
+}

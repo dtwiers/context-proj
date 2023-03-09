@@ -1,0 +1,254 @@
+@font-face {
+  font-family: Saira;
+  src: url('src/assets/static/Saira/Saira-Regular.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Saira;
+  src: url('/src/assets/static/Saira/Saira-SemiBold.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Saira;
+  src: url('/src/assets/static/Saira/Saira-Bold.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: Saira;
+  src: url('/src/assets/static/Saira/Saira-ExtraLight.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: DMSans;
+  src: url('/src/assets/static/DMSans-Regular.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: DMSans;
+  src: url('/src/assets/static/DMSans-Bold.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: DMSans;
+  src: url('/src/assets/static/DMSans-Italic.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: DMSans;
+  src: url('/src/assets/static/DMSans-BoldItalic.ttf'), local('Helvetica'),
+    local('Arial');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+body {
+  font-family: DMSans, Avenir, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  max-height: 100vh !important;
+}
+
+.main-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-family: Saira;
+}
+
+#app {
+  text-align: start;
+  color: #2c3e50;
+  height: 100%;
+  font-size: 20px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+:root {
+  --nav-bar-height: 48px;
+  --color-cta-primary: hsl(250, 59%, 34%);
+  --color-cta-primary-hover: hsl(250, 49%, 48%);
+  --color-primary2: hsl(220, 59%, 34%);
+  --color-primary: hsl(210, 05%, 22%);
+  --color-secondary-gray: hsl(210, 05%, 25%);
+  --color-primary-active: hsl(210, 5%, 33%);
+  --color-bg-primary: hsl(210, 8%, 67%);
+  --color-primary-highlight: hsl(210, 5%, 66%);
+  --color-primary-shadow: hsl(210, 5%, 11%);
+  --color-text-light: hsl(0, 0%, 94%);
+
+  --width-bp: 768px;
+
+  --spacing-sm: 5px;
+  --spacing-md: 10px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+}
+
+:root {
+  --color-bg-default: white;
+  --color-bg-primary: hsl(210, 42%, 90%);
+  --color-bg-primary-hover: hsl(210, 52%, 95%);
+  --color-bg-secondary: hsl(210, 32%, 80%);
+  --color-bg-secondary-hover: hsl(210, 22%, 70%);
+  --color-bg-secondary-selected: hsl(210, 22%, 50%);
+  --color-drop-shadow: hsl(210, 22%, 30%, 30%);
+  --color-drop-shadow-dark: hsl(0, 0%, 0%, 30%);
+
+  --color-bg-primary-accent: hsl(40, 100%, 90%);
+  --color-bg-primary-accent-active: hsl(40, 100%, 50%);
+  --color-bg-primary-accent-hover: hsl(40, 100%, 97%);
+
+  --color-bg-backdrop-dramatic: hsla(0, 0%, 0%, 0.7);
+  --color-fg-backdrop-dramatic: white;
+
+  --color-bg-secondary-accent: white;
+  --color-bg-secondary-accent-hover: hsl(48, 90%, 97%);
+  --color-bg-secondary-accent-active: hsl(48, 90%, 80%);
+  --color-bg-secondary-accent-active-hover: hsl(48, 90%, 70%);
+
+  --color-bg-cta-primary: hsl(250, 59%, 34%);
+  --color-bg-cta-primary-hover: hsl(250, 49%, 48%);
+  --color-fg-cta-primary: white;
+
+  --color-bg-status-loading: hsl(210, 100%, 30%);
+  --color-fg-status-loading: white;
+  --color-bg-status-success: hsl(158, 100%, 30%);
+  --color-bg-status-success-hover: hsl(158, 100%, 35%);
+  --color-fg-status-success: white;
+  --color-bg-status-error: hsl(348, 100%, 50%);
+  --color-fg-status-error: white;
+  --color-bg-status-warning: hsl(30, 80%, 50%);
+  --color-bg-status-warning-lite: hsl(30, 80%, 80%);
+  --color-fg-status-warning: var(--color-text-copy);
+  --color-bg-status-neutral: hsl(20, 100%, 30%);
+  --color-bg-status-neutral-hover: hsl(22, 100%, 37%);
+  --color-fg-status-neutral: white;
+
+  --color-border-primary-accent: hsl(250, 0%, 70%);
+  --color-border-primary-accent-active: hsl(250, 0%, 30%);
+
+  --color-text-primary-heading: hsl(210, 29%, 24%);
+  --color-text-meta: hsl(0, 0%, 50%);
+  --color-text-copy: hsl(0, 0%, 20%);
+  --color-text-error: hsl(348, 100%, 40%);
+  --color-text-cancel: hsl(210, 100%, 30%);
+}
+
+.icon-button {
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+  transition: ease-in-out;
+  transition-duration: 0.15s;
+  transition-property: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-button svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Just a few utils */
+
+.color-text-light {
+  color: var(--color-text-light);
+}
+
+.color-primary-highlight {
+  color: var(--color-primary-highlight);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: DMSans;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  background-color: var(--color-bg-default);
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+dialog::backdrop {
+  animation: backdrop-fade 0.5s ease forwards;
+}
+
+dialog[open] {
+  animation: modal-fade-in 0.5s ease forwards;
+}
+
+dialog.closed::backdrop {
+  animation: backdrop-fade 0.5s ease backwards;
+  animation-direction: reverse;
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-fade {
+  from {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+  }
+  to {
+    background-color: hsla(210, 50%, 20%, 0.5);
+    backdrop-filter: blur(0.75rem);
+  }
+}

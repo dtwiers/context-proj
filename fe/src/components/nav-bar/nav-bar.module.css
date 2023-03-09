@@ -1,0 +1,73 @@
+.nav {
+  height: 3rem;
+  z-index: 10;
+  box-shadow: 0 0px 18px 1px var(--color-drop-shadow);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary-heading);
+  font-size: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  font-weight: 600;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.nav button,
+.nav a {
+  box-sizing: border-box;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  min-width: var(--nav-bar-height);
+  justify-content: center;
+}
+
+.homeBtn {
+  font-family: 'Saira';
+}
+
+.nav button:hover,
+.nav a:hover {
+  background-color: var(--color-primary-active);
+  transition: background-color 0.2s ease;
+}
+
+.profileBtn {
+  padding: 1rem;
+}
+
+.extraSpacer {
+  flex-grow: 1;
+}
+
+.profileMenu {
+  opacity: 0;
+  display: none;
+  position: fixed;
+  right: 0;
+  top: var(--nav-bar-height);
+  color: black;
+  z-index: 100;
+}
+
+.open {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: opacity 0.2s ease;
+  width: 20rem;
+  background-color: aliceblue;
+}

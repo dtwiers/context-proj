@@ -1,0 +1,75 @@
+<svg viewBox="0 0 1600 900"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      <![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;700&display=swap');
+      ]]>
+    </style>
+
+    <linearGradient id="gray-fade">
+      <stop offset="0%" stop-opacity="0%" stop-color="#444" />
+      <stop offset="100%" stop-opacity="40%" stop-color="#444" />
+    </linearGradient>
+    <linearGradient id="yellow-fade">
+      <stop offset="0%" stop-opacity="100%" stop-color="#ffe699" />
+      <stop offset="100%" stop-opacity="100%" stop-color="#fb0" />
+    </linearGradient>
+    <linearGradient id="sm-gray-fade">
+      <stop offset="10%" stop-color="#000" />
+      <stop offset="100%" stop-color="#111" />
+    </linearGradient>
+    <linearGradient id="text-gradient">
+      <stop offset="0%" stop-color="#fb0" />
+      <stop offset="100%" stop-color="#fd8" />
+    </linearGradient>
+
+    <pattern id="Transparency" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="10" height="10" fill="#555" />
+      <rect x="10" y="0" width="10" height="10" fill="#444" />
+      <rect x="0" y="10" width="10" height="10" fill="#444" />
+      <rect x="10" y="10" width="10" height="10" fill="#555" />
+    </pattern>
+
+    <pattern id="dot" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect x="1" y="1" width="10" height="10" fill="rgba(0,0,0,0.3)" />
+    </pattern>
+
+    <pattern id="skew" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0,1 H10 L0,11 Z M12,1 V11 H2 Z" fill="rgba(0, 0, 0, 0.4)" />
+    </pattern>
+
+    <filter id="drop-shadow">
+      <feDropShadow stdDeviation="8" flood-opacity="0.5"/>
+    </filter>
+
+
+  </defs>
+  <!-- <rect id="canvas" x="0" y="0" width="1600" height="900" fill="url(#Transparency)" stroke="black" stroke-width="8" /> -->
+
+  <g filter="url(#drop-shadow)">
+  <path d="M80,800 l50,-150 H1520 l-50,150 Z" fill="#222" />
+  <path d="M80,800 l50,-150 H1520 l-50,150 Z" fill="url(#skew)" />
+  <path d="M80,800 l50,-150 H1520 l-50,150 Z" fill="url(#gray-fade)" />
+
+  <path d="M150,660 l13.3,-40 h1340 l-13.3,40 Z" fill="#ffbb00" />
+  <path d="M150,660 l13.3,-40 H1340 l-13.3,40 Z" fill="url(#yellow-fade)" />
+
+  <path d="M95,830 l13.3,-40 h1340 l-13.3,40 Z" fill="url(#sm-gray-fade)" />
+  </g>
+
+  <text id="title" font-family="Cairo" x="440" y="718" font-size="60" font-weight="700" fill="white">Toenjes
+    Showpigs</text>
+  <text id="subtitle" font-family="Cairo" x="415" y="775" font-size="48" font-weight="300" fill="white">1-1 Berk Female
+    (Jewel x Fortnite)</text>
+  <text id="header" font-family="Cairo" x="450" y="650" font-size="30" font-weight="600" fill="black">
+    LOT: P1
+  </text>
+  <text id="header" font-family="Cairo" x="400" y="820" font-size="30" font-weight="600" fill="url(#text-gradient)">
+    CALL TO BID: 319-480-0395 or 515-291-2020 or 319-269-0097
+  </text>
+  <path d="M130,800 l50,-150 h240 l-50,150 Z" fill="#333" style="stroke-linejoin: round;" stroke="#333" stroke-width="20px" />
+
+  <!-- <rect id="asset-box" x="170" y="660" width="170" height="130" fill="#114422" /> -->
+  <image x="170" y="650" width="210" height="150" href="https://www.toenjesshowpigs.com/images/index_02.jpg" preserveAspectRatio="xMidYMid meet" />
+</svg>
