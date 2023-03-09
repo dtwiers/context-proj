@@ -22,6 +22,7 @@ import { ModeButton } from './components/mode-button';
 import styles from './control.module.css';
 import { SlideEditor } from './components/slide-editor';
 import { api } from '../../util/api';
+import { BASE_API } from '../../util/api-base';
 
 const buttonConfigs: { mode: PresentationMode; icon: JSXElement }[] = [
   { mode: 'INVISIBLE', icon: <InvisibleIcon /> },
@@ -41,7 +42,7 @@ export const Control = () => {
   createEffect(() => {
     if (params.id) {
       eventSource = new EventSource(
-        `/api/presentations/${params.id}/subscribe`
+        `${BASE_API}/presentations/${params.id}/subscribe`
       );
       eventSource?.addEventListener(
         'message',

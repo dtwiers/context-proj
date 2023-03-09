@@ -145,10 +145,18 @@ class Api {
   }
 
   public async createAsset(name: string, file: File): Promise<void> {
-    this.axios$.value.post('/assets', {
-      name,
-      file,
-    });
+    this.axios$.value.post(
+      '/assets',
+      {
+        name,
+        file,
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
   }
 
   public async updatePresentationMode(eventId: string, mode: PresentationMode): Promise<void> {
