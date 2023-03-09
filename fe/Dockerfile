@@ -8,6 +8,7 @@ RUN npm run build
 COPY ./site/ ./site
 
 FROM caddy:alpine
+WORKDIR /app
 RUN apk 
 COPY ./site/ /srv/
 COPY ./Caddyfile /etc/caddy/Caddyfile
