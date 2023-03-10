@@ -8,7 +8,7 @@ import styles from './new-slide-modal.module.css';
 import { Observable, Subscription } from 'rxjs';
 import { Slide } from '../../../../types';
 import { api } from '../../../../util/api';
-import { delayMs } from 'src/util/delay';
+import { delayMs } from '../../../../util/delay';
 
 export type ModalRequest =
   | {
