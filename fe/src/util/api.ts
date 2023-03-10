@@ -99,11 +99,11 @@ class Api {
   }
 
   public async createEvent(name: string, date: Date | undefined): Promise<void> {
-    this.axios$.value.post(`/events`, { name, date });
+    return this.axios$.value.post(`/events`, { name, date });
   }
 
   public async deleteEvent(eventId: string): Promise<void> {
-    this.axios$.value.delete(`/events/${eventId}`);
+    return this.axios$.value.delete(`/events/${eventId}`);
   }
 
   public async getAssets(query?: string): Promise<Paginated<Asset[]>> {
@@ -147,11 +147,11 @@ class Api {
   }
 
   public async deleteAsset(assetId: string): Promise<void> {
-    this.axios$.value.delete(`/assets/${assetId}`);
+    return this.axios$.value.delete(`/assets/${assetId}`);
   }
 
   public async createAsset(name: string, file: File): Promise<void> {
-    this.axios$.value.post(
+    return this.axios$.value.post(
       '/assets',
       {
         name,
@@ -166,7 +166,7 @@ class Api {
   }
 
   public async updatePresentationMode(eventId: string, mode: PresentationMode): Promise<void> {
-    this.axios$.value.patch(`/presentations/${eventId}/mode`, { mode });
+    return this.axios$.value.patch(`/presentations/${eventId}/mode`, { mode });
   }
 
   public async getManualPresentationState(eventId: string): Promise<SlideState> {
@@ -175,7 +175,7 @@ class Api {
   }
 
   public async setManualPresentationState(eventId: string, state: SlideState): Promise<void> {
-    this.axios$.value.patch(`/presentations/${eventId}/data`, state);
+    return this.axios$.value.patch(`/presentations/${eventId}/data`, state);
   }
 
   public async getPresentationSlideId(eventId: string): Promise<string | null> {
@@ -193,19 +193,19 @@ class Api {
   }
 
   public async switchSlidesForPresentation(eventId: string, slideId: string): Promise<void> {
-    this.axios$.value.patch(`/presentations/${eventId}/slide`, { slideId });
+    return this.axios$.value.patch(`/presentations/${eventId}/slide`, { slideId });
   }
 
   public async createSlide(slide: CreateSlideBody): Promise<void> {
-    this.axios$.value.post(`/slides/`, slide);
+    return this.axios$.value.post(`/slides/`, slide);
   }
 
   public async updateSlide(slideId: string, slide: UpdateSlideBody): Promise<void> {
-    this.axios$.value.patch(`/slides/${slideId}`, slide);
+    return this.axios$.value.patch(`/slides/${slideId}`, slide);
   }
 
   public async deleteSlide(slideId: string): Promise<void> {
-    this.axios$.value.delete(`/slides/${slideId}`);
+    return this.axios$.value.delete(`/slides/${slideId}`);
   }
 
   public async getUserProfile(): Promise<User | null> {
