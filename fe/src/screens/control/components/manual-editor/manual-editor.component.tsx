@@ -22,17 +22,14 @@ export const ManualEditor = (props: ManualEditorProps) => {
   const [subtitle, setSubtitle] = createSignal<string>('');
   const [footer, setFooter] = createSignal<string>('');
   const [assetId, setAssetId] = createSignal<string>('');
-  const [trackChanges, setTrackChanges] = createSignal(true);
 
   createEffect(() => {
     if (resource.state === 'ready') {
-      setTrackChanges(false);
       setHeader(resource().header ?? '');
       setTitle(resource().title ?? '');
       setSubtitle(resource().subtitle ?? '');
       setFooter(resource().footer ?? '');
       setAssetId(resource().assetId ?? '');
-      setTrackChanges(true);
     }
   });
 
@@ -96,7 +93,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
           id='header-input'
           type='text'
           value={header()}
-          onInput={(ev) => trackChanges() && setHeader(ev.currentTarget.value)}
+          onInput={(ev) => setHeader(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
@@ -110,7 +107,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
           id='title-input'
           type='text'
           value={title()}
-          onInput={(ev) => trackChanges() && setTitle(ev.currentTarget.value)}
+          onInput={(ev) => setTitle(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
@@ -124,7 +121,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
           id='subtitle-input'
           type='text'
           value={subtitle()}
-          onInput={(ev) => trackChanges() && setSubtitle(ev.currentTarget.value)}
+          onInput={(ev) => setSubtitle(ev.currentTarget.value)}
         />
       </div>
       <div class={styles.inputGroup}>
@@ -134,7 +131,11 @@ export const ManualEditor = (props: ManualEditorProps) => {
             <span class={styles.changedItem}>*</span>
           </Show>
         </label>
-        <input type='text' value={footer()} onInput={(ev) => trackChanges() && setFooter(ev.currentTarget.value)} />
+        <input
+          type='text'
+          value={footer()}
+          onInput={(ev) => setFooter(ev.currentTarget.value)}
+        />
       </div>
       <div class={styles.inputGroup}>
         <span>
@@ -156,7 +157,8 @@ export const ManualEditor = (props: ManualEditorProps) => {
         class={styles.submitButton}
         disabled={changedItems().size === 0}
         type='submit'
-        onClick={async () => {
+        onClick={async (ev) => {
+          ev.preventDefault();
           await api.setManualPresentationState(eventId, {
             header: header(),
             title: title(),
@@ -164,9 +166,7 @@ export const ManualEditor = (props: ManualEditorProps) => {
             footer: footer(),
             assetId: assetId(),
           });
-          setTrackChanges(false);
           await refetch();
-          setTimeout(() => setTrackChanges(true), 3);
         }}
       >
         Update
