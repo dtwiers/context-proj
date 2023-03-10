@@ -8,6 +8,7 @@ import styles from './new-slide-modal.module.css';
 import { Observable, Subscription } from 'rxjs';
 import { Slide } from '../../../../types';
 import { api } from '../../../../util/api';
+import { delayMs } from 'src/util/delay';
 
 export type ModalRequest =
   | {
@@ -94,6 +95,7 @@ export const NewSlideModal = (props: NewSlideModalProps) => {
       }
       clearFields();
       mainModalRef?.close();
+      await delayMs(500);
       refetchEvent();
     } else {
       console.warn(validated.error);
