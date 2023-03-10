@@ -135,11 +135,6 @@ class Api {
     const imageResponse = await this.axios$.value.get<Blob>(`/assets/${assetId}`, {
       responseType: 'blob',
     });
-    try {
-      console.log(imageResponse.data);
-    } catch (e) {
-      console.error(e);
-    }
     return imageResponse.data;
   }
 

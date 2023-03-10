@@ -14,7 +14,8 @@ export const SlideEditor = (props: SlideEditorProps) => {
     api.getPresentationSlideId(props.eventId)
   );
   createEffect(() => {
-    if (currentSlide.state === 'ready') {
+    if (currentSlide() && currentSlide.state === 'ready') {
+      console.warn('SlideEditor: setting selected slide id: ', currentSlide());
       setSelectedSlideId(currentSlide());
     }
   });

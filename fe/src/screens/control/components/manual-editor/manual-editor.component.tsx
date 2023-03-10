@@ -24,7 +24,8 @@ export const ManualEditor = (props: ManualEditorProps) => {
   const [assetId, setAssetId] = createSignal<string>('');
 
   createEffect(() => {
-    if (resource.state === 'ready') {
+    if (resource() && resource.state === 'ready') {
+      console.warn('MANUAL EDITOR: RESOURCE UPDATE', resource());
       setHeader(resource().header ?? '');
       setTitle(resource().title ?? '');
       setSubtitle(resource().subtitle ?? '');
@@ -69,15 +70,6 @@ export const ManualEditor = (props: ManualEditorProps) => {
       return (await api.getAssetMeta(assetId)).label;
     }
     return '';
-  });
-
-  createEffect(() => {
-    if (resource.state === 'ready') {
-      setHeader(resource().header ?? '');
-      setTitle(resource().title ?? '');
-      setSubtitle(resource().subtitle ?? '');
-      setFooter(resource().footer ?? '');
-    }
   });
 
   return (
