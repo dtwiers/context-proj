@@ -10,7 +10,7 @@ export type SlideEditorProps = {
 export const SlideEditor = (props: SlideEditorProps) => {
   const [selectedSlideId, setSelectedSlideId] = createSignal<string | null>(null);
   const [searchTerm, setSearchTerm] = createSignal('');
-  const [currentSlide, { refetch }] = createResource(async () =>
+  const [currentSlide] = createResource(async () =>
     api.getPresentationSlideId(props.eventId)
   );
   createEffect(() => {
@@ -47,10 +47,9 @@ export const SlideEditor = (props: SlideEditorProps) => {
               title={`Header: ${item.header}\nTitle: ${item.title}\nSubtitle: ${
                 item.subtitle
               }\nFooter: ${item.footer}\nMedia: ${item.asset?.label ?? 'None'}`}
-              onClick={async () => {
+              onClick={() => {
                 setSelectedSlideId(item.id);
-                await api.switchSlidesForPresentation(props.eventId, item.id);
-                refetch();
+                api.switchSlidesForPresentation(props.eventId, item.id);
               }}
             >
               {item.name}

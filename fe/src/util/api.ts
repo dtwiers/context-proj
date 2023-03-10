@@ -170,7 +170,8 @@ class Api {
   }
 
   public async getManualPresentationState(eventId: string): Promise<SlideState> {
-    return this.axios$.value.get(`/presentations/${eventId}/manual`);
+    const result = await this.axios$.value.get(`/presentations/${eventId}/manual`);
+    return result.data
   }
 
   public async setManualPresentationState(eventId: string, state: SlideState): Promise<void> {
