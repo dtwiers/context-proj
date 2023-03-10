@@ -201,9 +201,7 @@ class Api {
   }
 
   public async createSlide(slide: CreateSlideBody): Promise<void> {
-    this.axios$.value.post(`/slides/`, {
-      slide,
-    });
+    this.axios$.value.post(`/slides/`, slide);
   }
 
   public async updateSlide(slideId: string, slide: UpdateSlideBody): Promise<void> {
