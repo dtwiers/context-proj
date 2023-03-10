@@ -3,7 +3,6 @@ import { createSignal, Show } from 'solid-js';
 import { Modal } from '../../../../components/modal';
 import { refetchAssets } from '../../../../store';
 import styles from './new-asset-modal.module.css';
-import { delayMs } from '../../../../util/delay';
 
 const apiCreateAsset = async (name: string, file: File): Promise<void> => {
   api.createAsset(name, file);
@@ -27,7 +26,6 @@ export const NewAssetModal = (props: NewAssetModalProps) => {
     const file = fileRef?.files?.item(0);
     if (nameRef?.value && file && fileRef) {
       await apiCreateAsset(nameRef.value, file);
-      await delayMs(500);
       await refetchAssets();
       dialogRef?.close();
       formRef?.reset();
